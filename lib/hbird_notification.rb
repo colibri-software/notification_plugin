@@ -9,6 +9,16 @@ module HbirdNotification
 
     before_page_render :set_config
 
+    def initialize
+      Locomotive::ContentEntry.class_eval do
+        after_save do |document|
+          puts "\n=========================================="
+          pp document
+          puts "\n=========================================="
+        end
+      end
+    end
+
     def self.rack_app
       Engine
     end
