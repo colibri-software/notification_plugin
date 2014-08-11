@@ -12,6 +12,7 @@ module HbirdNotification
 
     def self.config_or_default(key)
       defaults = {
+        'contact' => "fake@email.com"
       }
       hash = defaults.merge(config_hash)
       hash[key]
