@@ -24,6 +24,30 @@ module HbirdNotification
           mail_generation_script = Engine.config_or_default('mail_generation_script')
           next if mail_generation_script == nil
 
+          # // generate function takes users (array of {name: 'Foo', email: 'foo@example.com'})
+          # // and changed document object (ruby code: document.as_document) execute the javascript
+          # // then return a javascript object with structure:
+          # // mails
+          # //  |- 'foo@example.com'
+          # //  |   |- subject: 'Mail Subject'
+          # //  |   `- body: 'Mail body... with document change information'
+          # //  `- 'bar@example.com'
+          # //      |- subject: 'Mail Subject (can be different one based on javascript)'
+          # //      `- body: 'Mail body... with document change information (can be different)'
+          # // which convert to ruby hash
+          # // { 'foo@example.com' => { subject: 'Mail Subject', body: 'Mail body... with document change information' }, ... }
+          # function generate(users, document) {
+          #   var mails = {};
+          #   users.forEach(function(user) {
+          #     var mail = {};
+          #     mail.subject = 'Notification for ' + user.name + ': Document Change';
+          #     mail.body = 'Document Changed: ' + JSON.stringify(document);
+          #
+          #     mails[user.email] = mail;
+          #   });
+          #
+          #   return mails;
+          # }
           context = ExecJS.compile mail_generation_script
           mails = context.call 'generate', ::HbirdNotification::HbirdNotification.users_list, document.as_document
 
