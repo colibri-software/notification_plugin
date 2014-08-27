@@ -1,0 +1,49 @@
+h1. Hbird Notification
+
+This is a plugin for LocomotiveCMS. It was created to allow LocomotiveCMS designers to send emails when content entries are created, saved, or destroyed.
+
+It makes use of the JS3 feature of Locomotive plugins, allowing designers to write javascript that intergrates with other plugins.
+
+h2. Installation
+
+To use this plugin you must be using a version of LocomotiveCMS that has the plugins feature designed by "Colibri Software":https://www.colibri-software.com. You can do this by making the following changes to the Gemfile in you app:
+
+* Remove or comment out the following line:
+@gem 'locomotive_cms', '~> 2.X.X', require: 'locomotive/engine'@
+* Add the following line:
+@gem 'locomotive_cms', require: 'locomotive/engine', git: 'https://github.com/colibri-software/locomotive_engine.git', branch: 'plugins'@
+
+Then add the following lines in your Gemfile to include the plugin:
+<pre><code>group :locomotive_plugins do
+  gem 'hbird_notification', git: https://github.com/colibri-software/hbird_notification.git'
+end</code></pre>
+
+h2. Usage
+
+h3. Configuring Plugin
+
+This plugin provides a few configuration options which are as follows:
+
+* Email Sender - the email address that the emails will appear to come from.
+* Mail Generation Script - javascript that be run everytime a content entry is created, saved, or destroyed. There are several variables that are provided to the javascript. They are as follows
+** document - the document that was modified
+** content_type - the content_type of the document
+** action - the action preformed on the document ('create', 'save', 'destroy')
+** email_user(address,subject,body) - a function that takes three params that will send emails.
+
+
+h3. Liquid Drops
+
+This plugin provides no liquid drops
+
+h3. Liquid Tags
+
+This plugin provides no liquid tags
+
+h3. Liquid Filters
+
+This plugin provides no liquid filters
+
+h3. JS3
+
+The plugin provides no methods or variables for JS3.
