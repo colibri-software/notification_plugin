@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'locomotive_plugins'
 require 'hbird_notification/config'
+require 'hbird_notification/notification_mailer'
 
 module HbirdNotification
   class HbirdNotification
