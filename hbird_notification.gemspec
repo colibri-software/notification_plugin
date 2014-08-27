@@ -15,12 +15,7 @@ Gem::Specification.new do |s|
   s.summary     = "Locomotive plugin for user notification."
 
   s.add_dependency "rails", "~> 3.2.13"
-  s.add_dependency 'locomotive_plugins',    '~> 1.0.0.beta10'
-  s.add_dependency 'execjs'
-
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'simplecov'
+  s.add_dependency 'locomotive_plugins',    '~> 1.1'
 
   s.required_rubygems_version = ">= 1.3.6"
 
