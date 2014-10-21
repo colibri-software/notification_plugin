@@ -45,6 +45,14 @@ module HbirdNotification
       end
     end
 
+    def self.javascript_context
+      {
+        send: lambda{|this,address,subject,body|
+            ::HbirdNotification::NotificationMailer.notify_user(address, subject, body).deliver
+          }
+      }
+    end
+
     def config_template_file
       File.join(File.dirname(__FILE__), 'hbird_notification', 'config.html')
     end
